@@ -2,127 +2,119 @@
 
 import Link from "next/link";
 import { Navigation } from "@/app/components/nav";
-import { Globe, Zap, BarChart3, Sparkles, ArrowRight } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 
 export default function HowItWorks() {
   return (
     <>
       <Navigation />
-      <div className="flex flexlex-col min-h-screen bg-zinc-950 text-white pt-20">
+      <div className="flex flex-col min-h-screen bg-black text-white">
         {/* Hero */}
-        <section className="max-w-screen-2xl mx-auto px-6 py-20">
-          <div className="max-w-3xl">
+        <section className="pt-40 pb-24 px-6">
+          <div className="max-w-4xl mx-auto">
             <h1 className="text-6xl md:text-7xl font-bold tracking-tight leading-tight mb-6">
-              How it
-              <span className="block bg-gradient-to-r from-violet-400 via-cyan-400 to-violet-400 bg-clip-text text-transparent">Works</span>
+              The process
             </h1>
-            <p className="text-2xl text-zinc-400 mb-8 max-w-2xl">
+            <p className="text-xl md:text-2xl text-zinc-300 mb-8 max-w-2xl">
               See how AI teardowns transform your understanding of your website's performance in seconds.
             </p>
           </div>
         </section>
 
         {/* Steps */}
-        <section className="max-w-screen-2xl mx-auto px-6 py-20">
-          <div className="grid md:grid-cols-4 gap-8 mb-20">
-            {/* Step 1 */}
-            <div className="group">
-              <div className="relative mb-8">
-                <div className="w-20 h-20 bg-gradient-to-br from-violet-600/20 to-cyan-600/20 rounded-2xl flex items-center justify-center border border-violet-500/20 group-hover:border-violet-500/50 transition-all">
-                  <Globe className="w-10 h-10 text-violet-400" />
+        <section className="border-t border-zinc-800 py-24 px-6">
+          <div className="max-w-4xl mx-auto">
+            <div className="grid md:grid-cols-4 gap-8">
+              {[
+                { step: 1, title: "Enter URL", desc: "Paste your website" },
+                { step: 2, title: "AI Analysis", desc: "Firecrawl scrapes & evaluates" },
+                { step: 3, title: "Get Scores", desc: "Instant metrics & insights" },
+                { step: 4, title: "Upgrade", desc: "Full reports, rewrites, redesigns" }
+              ].map((item) => (
+                <div key={item.step}>
+                  <div className="text-sm text-zinc-400 mb-3">Step {item.step}</div>
+                  <h3 className="text-lg font-semibold mb-2 text-white">{item.title}</h3>
+                  <p className="text-sm text-zinc-400">{item.desc}</p>
                 </div>
-                <div className="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-r from-violet-600 to-cyan-600 rounded-full flex items-center justify-center text-white font-bold">1</div>
-              </div>
-              <h3 className="text-xl font-semibold mb-3">Enter Your URL</h3>
-              <p className="text-zinc-400">Simply paste your business website. Works with any public URL or domain.</p>
-            </div>
-
-            {/* Step 2 */}
-            <div className="group">
-              <div className="relative mb-8">
-                <div className="w-20 h-20 bg-gradient-to-br from-violet-600/20 to-cyan-600/20 rounded-2xl flex items-center justify-center border border-violet-500/20 group-hover:border-violet-500/50 transition-all">
-                  <Zap className="w-10 h-10 text-cyan-400" />
-                </div>
-                <div className="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-r from-violet-600 to-cyan-600 rounded-full flex items-center justify-center text-white font-bold">2</div>
-              </div>
-              <h3 className="text-xl font-semibold mb-3">AI Analysis</h3>
-              <p className="text-zinc-400">Our AI scrapes, analyzes, and benchmarks your site against conversion best practices in real-time.</p>
-            </div>
-
-            {/* Step 3 */}
-            <div className="group">
-              <div className="relative mb-8">
-                <div className="w-20 h-20 bg-gradient-to-br from-violet-600/20 to-cyan-600/20 rounded-2xl flex items-center justify-center border border-violet-500/20 group-hover:border-violet-500/50 transition-all">
-                  <BarChart3 className="w-10 h-10 text-violet-400" />
-                </div>
-                <div className="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-r from-violet-600 to-cyan-600 rounded-full flex items-center justify-center text-white font-bold">3</div>
-              </div>
-              <h3 className="text-xl font-semibold mb-3">Get Scores</h3>
-              <p className="text-zinc-400">Instant Homepage Score, Trust Score, and Booking Friction metrics with actionable insights.</p>
-            </div>
-
-            {/* Step 4 */}
-            <div className="group">
-              <div className="relative mb-8">
-                <div className="w-20 h-20 bg-gradient-to-br from-violet-600/20 to-cyan-600/20 rounded-2xl flex items-center justify-center border border-violet-500/20 group-hover:border-violet-500/50 transition-all">
-                  <Sparkles className="w-10 h-10 text-cyan-400" />
-                </div>
-                <div className="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-r from-violet-600 to-cyan-600 rounded-full flex items-center justify-center text-white font-bold">4</div>
-              </div>
-              <h3 className="text-xl font-semibold mb-3">Upgrade</h3>
-              <p className="text-zinc-400">Turn insights into revenue. Choose full redesigns, copywriting, or ongoing optimization.</p>
+              ))}
             </div>
           </div>
         </section>
 
         {/* Benefits */}
-        <section className="max-w-screen-2xl mx-auto px-6 py-20 border-t border-zinc-800">
-          <h2 className="text-4xl font-bold mb-16">Why Businesses Love VibeTeardown</h2>
-          <div className="grid md:grid-cols-2 gap-12">
-            <div className="space-y-8">
-              <div>
-                <h3 className="text-xl font-semibold text-violet-400 mb-2">⚡ Instant Results</h3>
-                <p className="text-zinc-400">No 2-week report. Get actionable insights in 8 seconds flat.</p>
+        <section className="border-t border-zinc-800 py-24 px-6 bg-zinc-950">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-4xl md:text-5xl font-bold mb-16">Why VibeTeardown works</h2>
+            <div className="grid md:grid-cols-2 gap-12">
+              <div className="space-y-8">
+                <div>
+                  <h3 className="text-lg font-semibold text-white mb-2">Instant Results</h3>
+                  <p className="text-zinc-300">No 2-week report. Get actionable insights in seconds.</p>
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-white mb-2">AI-Powered</h3>
+                  <p className="text-zinc-300">Trained on 10,000+ high-converting sites. Best practices instantly applied.</p>
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-white mb-2">Revenue Focused</h3>
+                  <p className="text-zinc-300">Every recommendation traces back to bookings, leads, or sales.</p>
+                </div>
               </div>
-              <div>
-                <h3 className="text-xl font-semibold text-cyan-400 mb-2">💡 AI-Powered</h3>
-                <p className="text-zinc-400">Our models analyze 10,000+ high-converting websites. You get best practices instantly.</p>
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold text-violet-400 mb-2">📈 Revenue Focused</h3>
-                <p className="text-zinc-400">Every recommendation traces back to bookings, leads, or sales. No vanity metrics.</p>
+              <div className="space-y-8">
+                <div>
+                  <h3 className="text-lg font-semibold text-white mb-2">Specific Fixable Issues</h3>
+                  <p className="text-zinc-300">Not vague. See exactly what's causing friction in your funnel.</p>
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-white mb-2">Flexible Upgrades</h3>
+                  <p className="text-zinc-300">Start free. Upgrade to reports, rewrites, or full redesigns when ready.</p>
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-white mb-2">Proven Results</h3>
+                  <p className="text-zinc-300">Clients average 28% booking increase within 30 days of implementation.</p>
+                </div>
               </div>
             </div>
-            <div className="space-y-8">
-              <div>
-                <h3 className="text-xl font-semibold text-cyan-400 mb-2">🎯 Specific Fixes</h3>
-                <p className="text-zinc-400">SEO gaps. Missing CTAs. Trust issues. We ID exactly what's holding you back.</p>
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold text-violet-400 mb-2">🚀 Upgrade Path</h3>
-                <p className="text-zinc-400">Not ready for a redesign? Get copywriting. Want everything? Choose my done-with-you service.</p>
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold text-cyan-400 mb-2">✅ Proven Results</h3>
-                <p className="text-zinc-400">Clients see 23% avg booking increase within 30 days of implementing recommendations.</p>
-              </div>
+          </div>
+        </section>
+
+        {/* What You'll Learn */}
+        <section className="border-t border-zinc-800 py-24 px-6">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-4xl md:text-5xl font-bold mb-16">What you'll discover</h2>
+            <div className="space-y-6">
+              {[
+                "Your Homepage Score: How you compare to conversion-optimized sites",
+                "Your Trust Score: Which trust signals you're missing (reviews, certs, speed)",
+                "Your Booking Friction: Exactly how hard it is for visitors to take action",
+                "Priority SEO issues: Missing alt text, thin pages, no schema, buried CTAs",
+                "CTA opportunities: Where to add contact buttons, urgency, testimonials",
+                "AI-written copy: See your homepage rewritten for conversion by AI",
+                "Next-step recommendations: Exactly what to fix first for best ROI"
+              ].map((item, i) => (
+                <div key={i} className="flex gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-cyan-400 flex-shrink-0 mt-0.5" />
+                  <p className="text-zinc-300">{item}</p>
+                </div>
+              ))}
             </div>
           </div>
         </section>
 
         {/* CTA */}
-        <section className="max-w-screen-2xl mx-auto px-6 py-20 mt-10">
-          <div className="bg-gradient-to-r from-violet-600/10 via-cyan-600/10 to-violet-600/10 border border-violet-500/20 rounded-3xl p-12 text-center">
-            <h2 className="text-4xl font-bold mb-6">Ready to see your teardown?</h2>
-            <Link href="/" className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-violet-600 to-cyan-600 hover:from-violet-500 hover:to-cyan-500 rounded-lg font-semibold transition-all hover:shadow-lg hover:shadow-violet-500/25">
-              Start Free Teardown <ArrowRight className="w-5 h-5" />
+        <section className="border-t border-zinc-800 py-24 px-6">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-5xl md:text-6xl font-bold mb-6">Ready to understand your site?</h2>
+            <p className="text-xl text-zinc-300 mb-10">Get your free analysis today.</p>
+            <Link href="/" className="inline-block px-8 py-4 bg-white text-black font-semibold rounded hover:bg-zinc-200 transition-colors">
+              Start Analysis
             </Link>
           </div>
         </section>
 
         {/* Footer */}
-        <footer className="py-8 text-center text-sm text-zinc-500 border-t border-zinc-800 mt-20">
-          © 2026 VibeTeardown • AI Website Intelligence
+        <footer className="border-t border-zinc-800 py-8 px-6 text-center text-sm text-zinc-500">
+          © 2026 VibeTeardown. All rights reserved.
         </footer>
       </div>
     </>

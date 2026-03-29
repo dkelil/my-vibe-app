@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Navigation } from "@/app/components/nav";
-import { ArrowRight, TrendingUp } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 
 const examples = [
   {
@@ -26,7 +26,7 @@ const examples = [
     beforeScore: 38,
     afterScore: 84,
     issues: ["Outdated design", "No trust signals", "Confusing navigation", "Slow page speed"],
-    fixes: ["Modern gradient design", "Testimonials + certifications", "Simplified menu", "Image optimization + CDN"],
+    fixes: ["Modern clean design", "Testimonials + certifications", "Simplified menu", "Image optimization + CDN"],
     result: "19% conversion rate lift"
   },
 ];
@@ -35,119 +35,111 @@ export default function Examples() {
   return (
     <>
       <Navigation />
-      <div className="flex flex-col min-h-screen bg-zinc-950 text-white pt-20">
+      <div className="flex flex-col min-h-screen bg-black text-white">
         {/* Hero */}
-        <section className="max-w-screen-2xl mx-auto px-6 py-20">
-          <div className="max-w-3xl">
+        <section className="pt-40 pb-24 px-6">
+          <div className="max-w-4xl mx-auto">
             <h1 className="text-6xl md:text-7xl font-bold tracking-tight leading-tight mb-6">
-              Real Results
-              <span className="block bg-gradient-to-r from-violet-400 via-cyan-400 to-violet-400 bg-clip-text text-transparent">from Local Businesses</span>
+              Real results
             </h1>
-            <p className="text-2xl text-zinc-400 mb-8 max-w-2xl">
-              See how VibeTeardown transformed websites into booking machines. Average improvement: +28%.
+            <p className="text-xl md:text-2xl text-zinc-300 mb-8 max-w-2xl">
+              How local businesses used VibeTeardown to transform their websites. Average improvement: +28%.
             </p>
           </div>
         </section>
 
         {/* Case Studies */}
-        <section className="max-w-screen-2xl mx-auto px-6 py-20 space-y-20">
-          {examples.map((example, i) => (
-            <div key={i} className="border border-zinc-800 rounded-3xl p-12 bg-gradient-to-br from-zinc-900/50 to-transparent hover:border-violet-500/50 transition-all">
-              <div className="flex justify-between items-start mb-12">
-                <div>
-                  <h2 className="text-3xl font-bold mb-2">{example.domain}</h2>
-                  <p className="text-zinc-400 flex items-center gap-2">
-                    <TrendingUp className="w-5 h-5 text-emerald-400" />
-                    <span className="text-2xl font-bold text-emerald-400">{example.result}</span>
-                  </p>
+        <section className="border-t border-zinc-800 py-24 px-6">
+          <div className="max-w-4xl mx-auto space-y-12">
+            {examples.map((example, i) => (
+              <div key={i} className="border border-zinc-800 rounded p-8 bg-zinc-950">
+                <div className="mb-12">
+                  <h2 className="text-2xl font-bold mb-2">{example.domain}</h2>
+                  <p className="text-lg font-semibold text-cyan-400">{example.result}</p>
                 </div>
-              </div>
 
-              <div className="grid md:grid-cols-2 gap-12 mb-12">
-                {/* Before */}
-                <div>
-                  <div className="mb-6">
-                    <div className="text-sm text-zinc-400 mb-2">BEFORE (Score: {example.beforeScore})</div>
-                    <div className="w-full h-2 bg-zinc-800 rounded-full overflow-hidden">
-                      <div className="h-full bg-red-500/50" style={{ width: `${example.beforeScore}%` }} />
+                <div className="grid md:grid-cols-2 gap-8 mb-8">
+                  {/* Before */}
+                  <div>
+                    <div className="mb-6">
+                      <div className="text-xs text-zinc-400 uppercase tracking-wide mb-2">Before: Score {example.beforeScore}</div>
+                      <div className="w-full h-1 bg-zinc-800 rounded-full overflow-hidden">
+                        <div className="h-full bg-red-600/50" style={{ width: `${example.beforeScore}%` }} />
+                      </div>
                     </div>
+                    <h3 className="font-semibold text-white mb-4">Issues Found:</h3>
+                    <ul className="space-y-2">
+                      {example.issues.map((issue, j) => (
+                        <li key={j} className="text-zinc-300 flex gap-2 text-sm">
+                          <span className="text-red-400 flex-shrink-0">−</span> {issue}
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                  <h3 className="font-semibold text-red-400 mb-4">Problems Identified:</h3>
-                  <ul className="space-y-2">
-                    {example.issues.map((issue, j) => (
-                      <li key={j} className="text-zinc-400 flex gap-2">
-                        <span className="text-red-400">✗</span> {issue}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
 
-                {/* After */}
-                <div>
-                  <div className="mb-6">
-                    <div className="text-sm text-zinc-400 mb-2">AFTER (Score: {example.afterScore})</div>
-                    <div className="w-full h-2 bg-zinc-800 rounded-full overflow-hidden">
-                      <div className="h-full bg-emerald-500" style={{ width: `${example.afterScore}%` }} />
+                  {/* After */}
+                  <div>
+                    <div className="mb-6">
+                      <div className="text-xs text-zinc-400 uppercase tracking-wide mb-2">After: Score {example.afterScore}</div>
+                      <div className="w-full h-1 bg-zinc-800 rounded-full overflow-hidden">
+                        <div className="h-full bg-cyan-500" style={{ width: `${example.afterScore}%` }} />
+                      </div>
                     </div>
+                    <h3 className="font-semibold text-white mb-4">Changes Made:</h3>
+                    <ul className="space-y-2">
+                      {example.fixes.map((fix, j) => (
+                        <li key={j} className="text-zinc-300 flex gap-2 text-sm">
+                          <CheckCircle2 className="w-4 h-4 text-cyan-400 flex-shrink-0 mt-0.5" /> {fix}
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                  <h3 className="font-semibold text-emerald-400 mb-4">Solutions Implemented:</h3>
-                  <ul className="space-y-2">
-                    {example.fixes.map((fix, j) => (
-                      <li key={j} className="text-zinc-400 flex gap-2">
-                        <span className="text-emerald-400">✓</span> {fix}
-                      </li>
-                    ))}
-                  </ul>
                 </div>
-              </div>
 
-              <div className="flex gap-4">
-                <Link href="/" className="px-6 py-3 bg-violet-600 hover:bg-violet-500 rounded-lg font-semibold transition-colors">
-                  Get Similar Results
+                <Link href="/" className="inline-block px-6 py-2 bg-white text-black rounded font-semibold hover:bg-zinc-200 transition-colors">
+                  See Your Potential
                 </Link>
-                <button className="px-6 py-3 border border-zinc-700 hover:border-violet-500 rounded-lg font-semibold transition-colors">
-                  Read Full Case Study
-                </button>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </section>
 
         {/* Stats */}
-        <section className="max-w-screen-2xl mx-auto px-6 py-20 border-t border-zinc-800">
-          <div className="grid md:grid-cols-4 gap-8 text-center">
+        <section className="border-t border-zinc-800 py-24 px-6 bg-zinc-950">
+          <div className="max-w-4xl mx-auto grid md:grid-cols-4 gap-8 text-center">
             <div>
-              <div className="text-5xl font-bold bg-gradient-to-r from-violet-400 to-cyan-400 bg-clip-text text-transparent mb-2">847</div>
-              <div className="text-zinc-400">Teardowns Completed</div>
+              <div className="text-4xl font-bold text-white mb-1">847</div>
+              <div className="text-sm text-zinc-400">Teardowns</div>
             </div>
             <div>
-              <div className="text-5xl font-bold bg-gradient-to-r from-violet-400 to-cyan-400 bg-clip-text text-transparent mb-2">28%</div>
-              <div className="text-zinc-400">Avg Booking Increase</div>
+              <div className="text-4xl font-bold text-white mb-1">28%</div>
+              <div className="text-sm text-zinc-400">Avg Increase</div>
             </div>
             <div>
-              <div className="text-5xl font-bold bg-gradient-to-r from-violet-400 to-cyan-400 bg-clip-text text-transparent mb-2">$4.2M</div>
-              <div className="text-zinc-400">Client Revenue Generated</div>
+              <div className="text-4xl font-bold text-white mb-1">$4.2M</div>
+              <div className="text-sm text-zinc-400">Generated</div>
             </div>
             <div>
-              <div className="text-5xl font-bold bg-gradient-to-r from-violet-400 to-cyan-400 bg-clip-text text-transparent mb-2">4.9★</div>
-              <div className="text-zinc-400">Client Satisfaction</div>
+              <div className="text-4xl font-bold text-white mb-1">4.9★</div>
+              <div className="text-sm text-zinc-400">Rating</div>
             </div>
           </div>
         </section>
 
         {/* CTA */}
-        <section className="max-w-screen-2xl mx-auto px-6 py-20 mt-10">
-          <div className="bg-gradient-to-r from-violet-600/10 via-cyan-600/10 to-violet-600/10 border border-violet-500/20 rounded-3xl p-12 text-center">
-            <h2 className="text-4xl font-bold mb-6">Your teardown is next.</h2>
-            <Link href="/" className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-violet-600 to-cyan-600 hover:from-violet-500 hover:to-cyan-500 rounded-lg font-semibold transition-all hover:shadow-lg hover:shadow-violet-500/25">
-              Get Free Analysis <ArrowRight className="w-5 h-5" />
+        <section className="border-t border-zinc-800 py-24 px-6">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-5xl md:text-6xl font-bold mb-6">Your breakthrough is next</h2>
+            <p className="text-xl text-zinc-300 mb-10">See what your site is missing.</p>
+            <Link href="/" className="inline-block px-8 py-4 bg-white text-black font-semibold rounded hover:bg-zinc-200 transition-colors">
+              Get Free Analysis
             </Link>
           </div>
         </section>
 
         {/* Footer */}
-        <footer className="py-8 text-center text-sm text-zinc-500 border-t border-zinc-800 mt-20">
-          © 2026 VibeTeardown • AI Website Intelligence
+        <footer className="border-t border-zinc-800 py-8 px-6 text-center text-sm text-zinc-500">
+          © 2026 VibeTeardown. All rights reserved.
         </footer>
       </div>
     </>
