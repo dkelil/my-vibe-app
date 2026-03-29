@@ -3,8 +3,7 @@
 import { useState, useTransition } from "react";
 import Link from "next/link";
 import { 
-  Globe, ShieldCheck, Clock, Search, MousePointer, ArrowRight, 
-  CheckCircle2, AlertCircle, Zap, Sparkles, TrendingUp
+  ChevronRight, CheckCircle2, AlertCircle, Clock
 } from "lucide-react";
 import { Navigation } from "./components/nav";
 import { analyzeWebsite } from "./actions";
@@ -44,371 +43,333 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-zinc-950 text-white">
+    <div className="flex flex-col min-h-screen bg-black text-white">
       <Navigation />
 
       <main className="flex-1">
         {!result ? (
           <>
             {/* Hero Section */}
-            <div className="max-w-screen-2xl mx-auto px-6 pt-32 pb-20">
-              <div className="max-w-3xl mx-auto text-center mb-16">
-                <div className="inline-flex items-center gap-x-2 rounded-full bg-violet-600/10 border border-violet-500/20 px-4 py-2 text-sm font-medium text-violet-300 mb-8">
-                  <Zap className="w-4 h-4" /> 
-                  <span>AI teardowns for local businesses</span>
-                </div>
-                
-                <h1 className="text-7xl md:text-8xl font-bold tracking-tight leading-tight mb-8">
-                  Your website is
-                  <span className="block bg-gradient-to-r from-violet-400 via-cyan-400 to-violet-400 bg-clip-text text-transparent">costing you money</span>
+            <div className="pt-40 pb-24 px-6">
+              <div className="max-w-4xl mx-auto">
+                <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-8 leading-tight">
+                  Understand your website
                 </h1>
                 
-                <p className="text-xl md:text-2xl text-zinc-400 mb-12 leading-relaxed max-w-2xl mx-auto">
-                  Get AI-powered insights in 8 seconds. Find hidden revenue opportunities. Boost bookings 20-40%.
+                <p className="text-xl md:text-2xl text-zinc-300 mb-12 max-w-2xl leading-relaxed">
+                  Get comprehensive AI analysis of your site's performance, trust signals, and conversion opportunities in seconds.
                 </p>
 
-                <form action={handleAnalyze} className="max-w-lg mx-auto mb-16">
-                  <div className="flex flex-col sm:flex-row gap-3 bg-gradient-to-b from-zinc-900 to-zinc-950 p-1 rounded-xl border border-zinc-800 hover:border-violet-500/50 transition-colors">
+                <form action={handleAnalyze} className="mb-12">
+                  <div className="flex flex-col sm:flex-row gap-2 max-w-2xl">
                     <input
                       name="url"
                       type="url"
                       placeholder="https://yourbusiness.com"
-                      className="flex-1 px-6 py-4 text-lg bg-transparent outline-none placeholder:text-zinc-600"
+                      className="flex-1 px-6 py-4 bg-zinc-900 border border-zinc-800 text-white placeholder:text-zinc-500 focus:border-cyan-600 focus:outline-none transition-colors rounded text-lg"
                       required
                     />
                     <button
                       type="submit"
                       disabled={isPending}
-                      className="px-8 py-4 font-semibold text-lg rounded-lg bg-gradient-to-r from-violet-600 to-cyan-600 hover:from-violet-500 hover:to-cyan-500 flex items-center justify-center gap-x-2 disabled:opacity-70 transition-all active:scale-95 whitespace-nowrap"
+                      className="px-8 py-4 bg-white text-black font-semibold rounded hover:bg-zinc-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 whitespace-nowrap"
                     >
                       {isPending ? (
                         <>
-                          <span className="animate-spin h-5 w-5 border-2 border-white border-t-transparent rounded-full" />
-                          Analyzing...
+                          <span className="animate-spin h-5 w-5 border-2 border-black border-t-transparent rounded-full" />
+                          Analyzing
                         </>
                       ) : (
-                        <>Analyze Free <ArrowRight className="w-5 h-5" /></>
+                        <>
+                          Analyze
+                          <ChevronRight className="w-5 h-5" />
+                        </>
                       )}
                     </button>
                   </div>
-                  <p className="text-sm text-zinc-500 mt-4">No credit card required. Results in 8 seconds.</p>
+                  <p className="text-sm text-zinc-400 mt-3">No credit card required. Results in seconds.</p>
                 </form>
 
                 {error && (
-                  <div className="bg-red-500/10 border border-red-500/50 rounded-xl p-4 text-red-300 text-sm mb-8">
+                  <div className="bg-red-950 border border-red-800 rounded p-4 text-red-200 text-sm max-w-2xl">
                     {error}
                   </div>
                 )}
               </div>
 
-              {/* Trust Badges */}
-              <div className="flex flex-wrap justify-center gap-8 text-center text-sm text-zinc-400 pt-12 border-t border-zinc-800">
+              {/* Trust Stats */}
+              <div className="max-w-4xl mx-auto grid grid-cols-3 gap-12 mt-24 pt-12 border-t border-zinc-800">
                 <div>
-                  <div className="font-bold text-white text-lg">847</div>
-                  <div>Teardowns Completed</div>
+                  <div className="text-3xl font-bold text-white mb-1">847</div>
+                  <div className="text-sm text-zinc-400">Sites Analyzed</div>
                 </div>
                 <div>
-                  <div className="font-bold text-white text-lg">+28%</div>
-                  <div>Avg Booking Increase</div>
+                  <div className="text-3xl font-bold text-white mb-1">28%</div>
+                  <div className="text-sm text-zinc-400">Avg. Improvement</div>
                 </div>
                 <div>
-                  <div className="font-bold text-white text-lg">4.9★</div>
-                  <div>Client Rating</div>
+                  <div className="text-3xl font-bold text-white mb-1">4.9★</div>
+                  <div className="text-sm text-zinc-400">User Rating</div>
                 </div>
               </div>
             </div>
 
             {/* Features Section */}
-            <section className="max-w-screen-2xl mx-auto px-6 py-20 border-t border-zinc-800">
-              <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">What You Get</h2>
-              
-              <div className="grid md:grid-cols-3 gap-8 mb-16">
-                <div className="group p-8 rounded-2xl border border-zinc-800 hover:border-violet-500/50 bg-gradient-to-br from-zinc-900/50 to-transparent transition-all">
-                  <Search className="w-10 h-10 text-violet-400 mb-4" />
-                  <h3 className="text-xl font-semibold mb-3">Homepage Score</h3>
-                  <p className="text-zinc-400">AI analyzes images, CTAs, design, and mobile-friendliness. Benchmarked against 10K+ high-performing sites.</p>
-                </div>
-
-                <div className="group p-8 rounded-2xl border border-zinc-800 hover:border-cyan-500/50 bg-gradient-to-br from-zinc-900/50 to-transparent transition-all">
-                  <ShieldCheck className="w-10 h-10 text-cyan-400 mb-4" />
-                  <h3 className="text-xl font-semibold mb-3">Trust Score</h3>
-                  <p className="text-zinc-400">Evaluates trust signals: phone numbers, reviews, certifications, page speed, and schema markup.</p>
-                </div>
-
-                <div className="group p-8 rounded-2xl border border-zinc-800 hover:border-violet-500/50 bg-gradient-to-br from-zinc-900/50 to-transparent transition-all">
-                  <TrendingUp className="w-10 h-10 text-violet-400 mb-4" />
-                  <h3 className="text-xl font-semibold mb-3">Booking Friction</h3>
-                  <p className="text-zinc-400">Friction score (1-10). Lower = easier to book. Identifies what's stopping customers from calling or booking.</p>
-                </div>
-
-                <div className="group p-8 rounded-2xl border border-zinc-800 hover:border-cyan-500/50 bg-gradient-to-br from-zinc-900/50 to-transparent transition-all">
-                  <AlertCircle className="w-10 h-10 text-orange-400 mb-4" />
-                  <h3 className="text-xl font-semibold mb-3">SEO Mistakes</h3>
-                  <p className="text-zinc-400">Missing alt text, thin pages, no schema, buried CTAs. Prioritized by revenue impact.</p>
-                </div>
-
-                <div className="group p-8 rounded-2xl border border-zinc-800 hover:border-violet-500/50 bg-gradient-to-br from-zinc-900/50 to-transparent transition-all">
-                  <MousePointer className="w-10 h-10 text-emerald-400 mb-4" />
-                  <h3 className="text-xl font-semibold mb-3">CTA Opportunities</h3>
-                  <p className="text-zinc-400">Missing booking buttons, click-to-call, forms above fold, testimonials, urgency elements.</p>
-                </div>
-
-                <div className="group p-8 rounded-2xl border border-zinc-800 hover:border-cyan-500/50 bg-gradient-to-br from-zinc-900/50 to-transparent transition-all">
-                  <Sparkles className="w-10 h-10 text-violet-400 mb-4" />
-                  <h3 className="text-xl font-semibold mb-3">AI Rewrite</h3>
-                  <p className="text-zinc-400">AI-optimized homepage copy designed to convert. Before/after comparison with actionable changes.</p>
-                </div>
-              </div>
-            </section>
-
-            {/* How It Works Section */}
-            <section className="max-w-screen-2xl mx-auto px-6 py-20 border-t border-zinc-800">
-              <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">How It Works</h2>
-              
-              <div className="grid md:grid-cols-4 gap-8 mb-16">
-                {[
-                  { num: "1", title: "Enter URL", desc: "Paste your business website" },
-                  { num: "2", title: "AI Analysis", desc: "Firecrawl scrapes & AI evaluates" },
-                  { num: "3", title: "Get Results", desc: "Scores, insights, recommendations" },
-                  { num: "4", title: "Upgrade", desc: "Full report, rewrite, or redesign" }
-                ].map((step) => (
-                  <div key={step.num} className="relative">
-                    <div className="flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-br from-violet-600 to-cyan-600 text-white font-bold mb-4 mx-auto">{step.num}</div>
-                    <h3 className="text-lg font-semibold text-center mb-2">{step.title}</h3>
-                    <p className="text-center text-zinc-400 text-sm">{step.desc}</p>
+            <section className="border-t border-zinc-800 py-24 px-6">
+              <div className="max-w-4xl mx-auto">
+                <h2 className="text-4xl md:text-5xl font-bold mb-16">What you get</h2>
+                
+                <div className="grid md:grid-cols-2 gap-12">
+                  <div>
+                    <h3 className="text-lg font-semibold mb-3 text-white">Homepage Score</h3>
+                    <p className="text-zinc-300">AI-powered evaluation of design, usability, mobile optimization, and alignment with conversion best practices. Benchmarked against thousands of high-performing sites.</p>
                   </div>
-                ))}
-              </div>
 
-              <div className="text-center">
-                <Link href="/how-it-works" className="inline-flex items-center gap-2 px-6 py-3 border border-zinc-700 hover:border-violet-500 rounded-lg font-semibold transition-colors">
-                  Deep Dive <ArrowRight className="w-4 h-4" />
-                </Link>
+                  <div>
+                    <h3 className="text-lg font-semibold mb-3 text-white">Trust Score</h3>
+                    <p className="text-zinc-300">Assessment of trust signals including contact information, reviews, certifications, page speed, schema markup, and security indicators.</p>
+                  </div>
+
+                  <div>
+                    <h3 className="text-lg font-semibold mb-3 text-white">Booking Friction</h3>
+                    <p className="text-zinc-300">Quantified friction score (1-10) measuring how easy it is for visitors to take action. Lower scores mean better conversion paths.</p>
+                  </div>
+
+                  <div>
+                    <h3 className="text-lg font-semibold mb-3 text-white">Actionable Insights</h3>
+                    <p className="text-zinc-300">Specific recommendations on SEO improvements, missing CTAs, content gaps, and optimization opportunities ranked by impact.</p>
+                  </div>
+
+                  <div>
+                    <h3 className="text-lg font-semibold mb-3 text-white">AI-Powered Rewrite</h3>
+                    <p className="text-zinc-300">Professional homepage copy suggestion optimized for conversions. See before/after comparison with detailed improvements.</p>
+                  </div>
+
+                  <div>
+                    <h3 className="text-lg font-semibold mb-3 text-white">Instant Results</h3>
+                    <p className="text-zinc-300">Complete analysis delivered in seconds. No waiting for reports. No guesswork. Just data-driven recommendations.</p>
+                  </div>
+                </div>
               </div>
             </section>
 
-            {/* Examples Section */}
-            <section className="max-w-screen-2xl mx-auto px-6 py-20 border-t border-zinc-800">
-              <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">Real Results</h2>
-              <p className="text-center text-zinc-400 mb-16 max-w-2xl mx-auto">See how businesses like yours used VibeTeardown to 3x their bookings</p>
-              
-              <div className="grid md:grid-cols-3 gap-8 mb-12">
-                {[
-                  { before: 42, after: 87, growth: "34% more calls" },
-                  { before: 55, after: 91, growth: "28% more bookings" },
-                  { before: 38, after: 84, growth: "19% conversion lift" }
-                ].map((item, i) => (
-                  <div key={i} className="p-8 rounded-2xl border border-zinc-800 bg-gradient-to-br from-zinc-900/50 to-transparent">
-                    <div className="flex justify-between items-center mb-6">
-                      <div>
-                        <div className="text-sm text-zinc-500">Before</div>
-                        <div className="text-3xl font-bold">{item.before}</div>
-                      </div>
-                      <ArrowRight className="w-6 h-6 text-violet-400" />
-                      <div>
-                        <div className="text-sm text-zinc-500">After</div>
-                        <div className="text-3xl font-bold text-emerald-400">{item.after}</div>
-                      </div>
+            {/* Process Section */}
+            <section className="border-t border-zinc-800 py-24 px-6 bg-zinc-950">
+              <div className="max-w-4xl mx-auto">
+                <h2 className="text-4xl md:text-5xl font-bold mb-16">How it works</h2>
+                
+                <div className="grid md:grid-cols-4 gap-8">
+                  {[
+                    { step: 1, title: "Submit", desc: "Enter your website URL" },
+                    { step: 2, title: "Analyze", desc: "Our AI evaluates your site" },
+                    { step: 3, title: "Review", desc: "Get instant insights" },
+                    { step: 4, title: "Improve", desc: "Implement recommendations" }
+                  ].map((item) => (
+                    <div key={item.step}>
+                      <div className="text-sm text-zinc-400 mb-3">Step {item.step}</div>
+                      <h3 className="text-lg font-semibold mb-2 text-white">{item.title}</h3>
+                      <p className="text-sm text-zinc-400">{item.desc}</p>
                     </div>
-                    <div className="text-center font-semibold text-cyan-400">{item.growth}</div>
-                  </div>
-                ))}
-              </div>
-
-              <div className="text-center">
-                <Link href="/examples" className="inline-flex items-center gap-2 px-6 py-3 border border-zinc-700 hover:border-violet-500 rounded-lg font-semibold transition-colors">
-                  See All Case Studies <ArrowRight className="w-4 h-4" />
-                </Link>
+                  ))}
+                </div>
               </div>
             </section>
 
-            {/* Pricing Preview */}
-            <section className="max-w-screen-2xl mx-auto px-6 py-20 border-t border-zinc-800">
-              <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">Simple Pricing</h2>
-              <p className="text-center text-zinc-400 mb-16 max-w-2xl mx-auto">Start free. Upgrade only when you're ready.</p>
-              
-              <div className="grid md:grid-cols-4 gap-6 mb-12">
-                <div className="p-8 rounded-2xl border border-zinc-800 bg-zinc-900/50">
-                  <h3 className="text-2xl font-bold mb-2">Free</h3>
-                  <p className="text-zinc-400 text-sm mb-4">AI Teardown</p>
-                  <div className="text-3xl font-bold mb-6">$0</div>
-                  <button className="w-full py-2 bg-zinc-800 hover:bg-zinc-700 rounded-lg font-semibold transition-colors mb-6">Start Now</button>
-                  <ul className="space-y-2 text-sm text-zinc-400">
-                    <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0" /> Scores & metrics</li>
-                    <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0" /> 4 SEO problems</li>
-                    <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0" /> AI rewrite</li>
-                  </ul>
-                </div>
+            {/* Pricing Section */}
+            <section className="border-t border-zinc-800 py-24 px-6">
+              <div className="max-w-4xl mx-auto">
+                <h2 className="text-4xl md:text-5xl font-bold mb-4">Pricing</h2>
+                <p className="text-zinc-300 mb-16">Simple, transparent pricing. Start free.</p>
 
-                <div className="p-8 rounded-2xl border border-zinc-800 bg-zinc-900/50">
-                  <h3 className="text-2xl font-bold mb-2">Full Report</h3>
-                  <p className="text-zinc-400 text-sm mb-4">15-page PDF</p>
-                  <div className="text-3xl font-bold mb-6">$149</div>
-                  <button className="w-full py-2 bg-violet-600 hover:bg-violet-500 rounded-lg font-semibold transition-colors mb-6">Learn More</button>
-                  <ul className="space-y-2 text-sm text-zinc-400">
-                    <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0" /> Everything free +</li>
-                    <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0" /> 15-page report</li>
-                    <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0" /> 30-min call</li>
-                  </ul>
-                </div>
-
-                <div className="p-8 rounded-2xl border border-zinc-800 bg-zinc-900/50">
-                  <h3 className="text-2xl font-bold mb-2">Rewrite</h3>
-                  <p className="text-zinc-400 text-sm mb-4">Homepage copy</p>
-                  <div className="text-3xl font-bold mb-6">$399</div>
-                  <button className="w-full py-2 bg-violet-600 hover:bg-violet-500 rounded-lg font-semibold transition-colors mb-6">Learn More</button>
-                  <ul className="space-y-2 text-sm text-zinc-400">
-                    <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0" /> Everything report +</li>
-                    <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0" /> Pro copy rewrite</li>
-                    <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0" /> 3 revisions</li>
-                  </ul>
-                </div>
-
-                <div className="p-8 rounded-2xl border-2 border-violet-500 bg-gradient-to-br from-violet-600/10 to-cyan-600/10 relative">
-                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <div className="bg-gradient-to-r from-violet-600 to-cyan-600 px-4 py-1 rounded-full text-sm font-semibold">POPULAR</div>
+                <div className="grid md:grid-cols-3 gap-8">
+                  <div className="border border-zinc-800 p-8 rounded">
+                    <h3 className="text-xl font-semibold mb-2">Free</h3>
+                    <p className="text-zinc-400 text-sm mb-6">AI Teardown</p>
+                    <div className="text-4xl font-bold mb-8">$0</div>
+                    <button className="w-full py-3 bg-zinc-900 hover:bg-zinc-800 rounded font-semibold transition-colors mb-8 text-white">Get Started</button>
+                    <ul className="space-y-3 text-sm text-zinc-300">
+                      <li className="flex gap-2 items-start">
+                        <CheckCircle2 className="w-4 h-4 mt-0.5 flex-shrink-0" />
+                        <span>Full analysis scores</span>
+                      </li>
+                      <li className="flex gap-2 items-start">
+                        <CheckCircle2 className="w-4 h-4 mt-0.5 flex-shrink-0" />
+                        <span>SEO recommendations</span>
+                      </li>
+                      <li className="flex gap-2 items-start">
+                        <CheckCircle2 className="w-4 h-4 mt-0.5 flex-shrink-0" />
+                        <span>AI rewrite sample</span>
+                      </li>
+                    </ul>
                   </div>
-                  <h3 className="text-2xl font-bold mb-2">Redesign</h3>
-                  <p className="text-zinc-400 text-sm mb-4">Full rebuild</p>
-                  <div className="text-3xl font-bold mb-6">$799</div>
-                  <button className="w-full py-2 bg-gradient-to-r from-violet-600 to-cyan-600 hover:from-violet-500 hover:to-cyan-500 rounded-lg font-semibold transition-colors mb-6">Learn More</button>
-                  <ul className="space-y-2 text-sm text-zinc-400">
-                    <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0" /> Everything rewrite +</li>
-                    <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0" /> Full redesign</li>
-                    <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0" /> 30-day support</li>
-                  </ul>
-                </div>
-              </div>
 
-              <div className="text-center">
-                <Link href="/pricing" className="inline-flex items-center gap-2 px-6 py-3 border border-zinc-700 hover:border-violet-500 rounded-lg font-semibold transition-colors">
-                  View All Plans <ArrowRight className="w-4 h-4" />
-                </Link>
+                  <div className="border border-zinc-800 p-8 rounded">
+                    <h3 className="text-xl font-semibold mb-2">Report</h3>
+                    <p className="text-zinc-400 text-sm mb-6">15-page PDF</p>
+                    <div className="text-4xl font-bold mb-8">$149</div>
+                    <Link href="/pricing" className="w-full block py-3 bg-white text-black rounded font-semibold transition-colors hover:bg-zinc-200 text-center mb-8">Learn More</Link>
+                    <ul className="space-y-3 text-sm text-zinc-300">
+                      <li className="flex gap-2 items-start">
+                        <CheckCircle2 className="w-4 h-4 mt-0.5 flex-shrink-0" />
+                        <span>Everything free +</span>
+                      </li>
+                      <li className="flex gap-2 items-start">
+                        <CheckCircle2 className="w-4 h-4 mt-0.5 flex-shrink-0" />
+                        <span>Detailed PDF report</span>
+                      </li>
+                      <li className="flex gap-2 items-start">
+                        <CheckCircle2 className="w-4 h-4 mt-0.5 flex-shrink-0" />
+                        <span>30-minute call</span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div className="border border-cyan-700 p-8 rounded bg-cyan-950/20">
+                    <div className="text-xs font-semibold text-cyan-400 mb-2">RECOMMENDED</div>
+                    <h3 className="text-xl font-semibold mb-2">Redesign</h3>
+                    <p className="text-zinc-400 text-sm mb-6">Full site rebuild</p>
+                    <div className="text-4xl font-bold mb-8">$799</div>
+                    <Link href="/pricing" className="w-full block py-3 bg-cyan-600 hover:bg-cyan-700 text-black rounded font-semibold transition-colors text-center mb-8">Learn More</Link>
+                    <ul className="space-y-3 text-sm text-zinc-300">
+                      <li className="flex gap-2 items-start">
+                        <CheckCircle2 className="w-4 h-4 mt-0.5 flex-shrink-0" />
+                        <span>Everything report +</span>
+                      </li>
+                      <li className="flex gap-2 items-start">
+                        <CheckCircle2 className="w-4 h-4 mt-0.5 flex-shrink-0" />
+                        <span>Full redesign</span>
+                      </li>
+                      <li className="flex gap-2 items-start">
+                        <CheckCircle2 className="w-4 h-4 mt-0.5 flex-shrink-0" />
+                        <span>30-day support</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
               </div>
             </section>
 
             {/* Final CTA */}
-            <section className="max-w-screen-2xl mx-auto px-6 py-20 border-t border-zinc-800">
-              <div className="bg-gradient-to-r from-violet-600/10 via-cyan-600/10 to-violet-600/10 border border-violet-500/20 rounded-3xl p-16 text-center">
-                <h2 className="text-5xl md:text-6xl font-bold mb-6">Ready to 3x your bookings?</h2>
-                <p className="text-xl text-zinc-400 mb-10 max-w-2xl mx-auto">Get your free AI teardown now. No credit card, no commitment. Results in 8 seconds.</p>
-                <Link href="/" className="inline-flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-violet-600 to-cyan-600 hover:from-violet-500 hover:to-cyan-500 rounded-lg font-semibold text-lg transition-all hover:shadow-lg hover:shadow-violet-500/25">
-                  Start Free Teardown <ArrowRight className="w-6 h-6" />
-                </Link>
+            <section className="border-t border-zinc-800 py-24 px-6">
+              <div className="max-w-4xl mx-auto text-center">
+                <h2 className="text-5xl md:text-6xl font-bold mb-6">Ready to improve?</h2>
+                <p className="text-xl text-zinc-300 mb-10">Get your free analysis today.</p>
+                <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="px-8 py-4 bg-white text-black font-semibold rounded hover:bg-zinc-200 transition-colors inline-flex items-center gap-2">
+                  Start Analysis
+                  <ChevronRight className="w-5 h-5" />
+                </button>
               </div>
             </section>
           </>
         ) : (
           /* RESULTS DASHBOARD */
-          <div className="max-w-screen-2xl mx-auto px-6 py-10 pt-32">
-            <div className="flex justify-between items-end border-b border-zinc-800 pb-6 mb-10">
+          <div className="max-w-4xl mx-auto px-6 py-12 pt-32">
+            <div className="flex justify-between items-start mb-12 pb-8 border-b border-zinc-800">
               <div>
-                <h2 className="text-4xl font-semibold tracking-tight flex items-center gap-3">
-                  Teardown for <span className="text-violet-400">{result.domain}</span>
-                  <CheckCircle2 className="w-8 h-8 text-emerald-500" />
-                </h2>
-                {result.scrapedTitle && <p className="text-zinc-400">{result.scrapedTitle}</p>}
-                <p className="text-zinc-500 flex items-center gap-1">
-                  <Clock className="w-4 h-4" /> Completed in 2.1 seconds • AI powered
+                <h2 className="text-5xl font-bold mb-2 text-white">{result.domain}</h2>
+                {result.scrapedTitle && <p className="text-zinc-400 text-lg">{result.scrapedTitle}</p>}
+                <p className="text-sm text-zinc-500 mt-2 flex items-center gap-1">
+                  <Clock className="w-4 h-4" /> Analysis complete
                 </p>
               </div>
-              <button onClick={reset} className="text-sm font-medium underline hover:text-violet-400">← Analyze another site</button>
+              <button onClick={reset} className="text-cyan-400 hover:text-cyan-300 font-semibold text-sm transition-colors">
+                Analyze Another
+              </button>
             </div>
 
             {/* SCORES */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-              <div className="bg-gradient-to-br from-zinc-900 to-transparent border border-zinc-800 rounded-2xl p-8">
-                <div className="flex justify-between mb-6">
-                  <div className="font-medium flex items-center gap-2"><Search className="w-5 h-5 text-violet-400" />Homepage Score</div>
-                  <div className="text-5xl font-semibold text-emerald-400">{result.homepageScore}</div>
+            <div className="grid md:grid-cols-3 gap-8 mb-12">
+              <div className="border border-zinc-800 p-8 rounded bg-zinc-950">
+                <div className="flex justify-between items-start mb-6">
+                  <h3 className="font-semibold text-white">Homepage Score</h3>
+                  <div className="text-4xl font-bold text-white">{result.homepageScore}</div>
                 </div>
-                <div className="h-2 bg-zinc-800 rounded-full overflow-hidden">
-                  <div className="h-2 bg-gradient-to-r from-emerald-400 to-violet-500" style={{ width: `${result.homepageScore}%` }} />
-                </div>
-              </div>
-
-              <div className="bg-gradient-to-br from-zinc-900 to-transparent border border-zinc-800 rounded-2xl p-8">
-                <div className="flex justify-between mb-6">
-                  <div className="font-medium flex items-center gap-2"><ShieldCheck className="w-5 h-5 text-emerald-400" />Trust Score</div>
-                  <div className="text-5xl font-semibold text-emerald-400">{result.trustScore}</div>
-                </div>
-                <div className="h-2 bg-zinc-800 rounded-full overflow-hidden">
-                  <div className="h-2 bg-emerald-400" style={{ width: `${result.trustScore}%` }} />
+                <div className="h-1 bg-zinc-800 rounded-full overflow-hidden">
+                  <div className="h-full bg-cyan-500" style={{ width: `${result.homepageScore}%` }} />
                 </div>
               </div>
 
-              <div className="bg-gradient-to-br from-zinc-900 to-transparent border border-zinc-800 rounded-2xl p-8">
-                <div className="flex justify-between mb-6">
-                  <div className="font-medium flex items-center gap-2"><Clock className="w-5 h-5 text-amber-400" />Booking Friction</div>
-                  <div className="text-5xl font-semibold text-amber-400">{result.bookingFriction}</div>
+              <div className="border border-zinc-800 p-8 rounded bg-zinc-950">
+                <div className="flex justify-between items-start mb-6">
+                  <h3 className="font-semibold text-white">Trust Score</h3>
+                  <div className="text-4xl font-bold text-white">{result.trustScore}</div>
                 </div>
-                <div className="text-sm text-zinc-400">/10 (lower = better)</div>
+                <div className="h-1 bg-zinc-800 rounded-full overflow-hidden">
+                  <div className="h-full bg-cyan-500" style={{ width: `${result.trustScore}%` }} />
+                </div>
+              </div>
+
+              <div className="border border-zinc-800 p-8 rounded bg-zinc-950">
+                <div className="flex justify-between items-start mb-6">
+                  <h3 className="font-semibold text-white">Booking Friction</h3>
+                  <div className="text-4xl font-bold text-white">{result.bookingFriction}</div>
+                </div>
+                <p className="text-xs text-zinc-400">/10 (lower is better)</p>
               </div>
             </div>
 
             {/* INSIGHTS */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
-              <div className="bg-gradient-to-br from-zinc-900 to-transparent border border-zinc-800 rounded-2xl p-8">
-                <h3 className="font-semibold text-red-400 mb-4 flex items-center gap-2"><AlertCircle className="w-5 h-5" />SEO Mistakes</h3>
-                <ul className="space-y-3 text-sm">
+            <div className="grid md:grid-cols-2 gap-8 mb-12">
+              <div className="border border-zinc-800 p-8 rounded bg-zinc-950">
+                <h3 className="font-semibold text-white mb-6 flex items-center gap-2">
+                  <AlertCircle className="w-5 h-5" />
+                  Issues Found
+                </h3>
+                <ul className="space-y-3">
                   {result.seoMistakes.map((item, i) => (
-                    <li key={i} className="flex gap-2"><span className="text-red-400">•</span> {item}</li>
+                    <li key={i} className="text-sm text-zinc-300 flex gap-3">
+                      <span className="text-red-400 flex-shrink-0">→</span>
+                      {item}
+                    </li>
                   ))}
                 </ul>
               </div>
-              <div className="bg-gradient-to-br from-zinc-900 to-transparent border border-zinc-800 rounded-2xl p-8">
-                <h3 className="font-semibold text-amber-400 mb-4 flex items-center gap-2"><MousePointer className="w-5 h-5" />Missed CTA Opportunities</h3>
-                <ul className="space-y-3 text-sm">
+
+              <div className="border border-zinc-800 p-8 rounded bg-zinc-950">
+                <h3 className="font-semibold text-white mb-6 flex items-center gap-2">
+                  <CheckCircle2 className="w-5 h-5" />
+                  Opportunities
+                </h3>
+                <ul className="space-y-3">
                   {result.missedCtas.map((item, i) => (
-                    <li key={i} className="flex gap-2"><span className="text-amber-400">•</span> {item}</li>
+                    <li key={i} className="text-sm text-zinc-300 flex gap-3">
+                      <span className="text-cyan-400 flex-shrink-0">→</span>
+                      {item}
+                    </li>
                   ))}
                 </ul>
               </div>
             </div>
 
             {/* REWRITE */}
-            <div className="bg-gradient-to-br from-zinc-900 to-transparent border border-zinc-800 rounded-2xl p-8 mb-12">
-              <h3 className="font-semibold mb-6">Homepage Rewrite Suggestion</h3>
+            <div className="border border-zinc-800 p-8 rounded bg-zinc-950 mb-12">
+              <h3 className="font-semibold text-white mb-8">Suggested Rewrite</h3>
               <div className="grid md:grid-cols-2 gap-8">
                 <div>
-                  <div className="uppercase text-xs text-red-400 mb-2">Before (yours)</div>
-                  <div className="bg-zinc-800/50 p-6 rounded-xl text-sm">{result.beforeRewrite}</div>
+                  <p className="text-xs text-zinc-500 uppercase tracking-wide mb-3">Current Copy</p>
+                  <p className="text-sm text-zinc-300 leading-relaxed">{result.beforeRewrite}</p>
                 </div>
                 <div>
-                  <div className="uppercase text-xs text-emerald-400 mb-2">After (AI-optimized)</div>
-                  <div className="bg-emerald-950/50 p-6 rounded-xl text-sm border border-emerald-800">{result.afterRewrite}</div>
+                  <p className="text-xs text-cyan-400 uppercase tracking-wide mb-3">Optimized</p>
+                  <p className="text-sm text-zinc-200 leading-relaxed font-medium">{result.afterRewrite}</p>
                 </div>
               </div>
             </div>
 
-            {/* UPSELL */}
-            <div className="border-2 border-violet-500 bg-gradient-to-r from-violet-950/30 to-cyan-950/30 rounded-3xl p-12 text-center mb-12">
-              <h3 className="text-3xl font-semibold mb-8">Turn these insights into revenue</h3>
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-                <Link href="/pricing" className="bg-zinc-900 border border-zinc-700 rounded-2xl p-6 hover:border-violet-400 transition">
-                  Full Report<br/><span className="text-3xl font-semibold text-violet-400">$149</span>
-                </Link>
-                <Link href="/pricing" className="bg-zinc-900 border border-zinc-700 rounded-2xl p-6 hover:border-violet-400 transition">
-                  Rewritten Copy<br/><span className="text-3xl font-semibold text-violet-400">$399</span>
-                </Link>
-                <Link href="/pricing" className="bg-zinc-900 border border-zinc-700 rounded-2xl p-6 hover:border-violet-400 transition">
-                  Redesign<br/><span className="text-3xl font-semibold text-violet-400">$799</span>
-                </Link>
-                <Link href="/pricing" className="bg-zinc-900 border-2 border-violet-400 rounded-2xl p-6 hover:bg-violet-900/20 transition relative">
-                  <div className="absolute -top-3 -right-3 bg-emerald-500 text-white text-xs px-3 py-1 rounded-full">POPULAR</div>
-                  Monthly<br/><span className="text-3xl font-semibold text-violet-400">$299/mo</span>
-                </Link>
-              </div>
-              <Link href="/pricing" className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-violet-600 to-cyan-600 hover:from-violet-500 hover:to-cyan-500 rounded-lg font-semibold transition-all">
-                Explore All Plans <ArrowRight className="w-5 h-5" />
+            {/* NEXT STEPS */}
+            <div className="border border-cyan-700 bg-cyan-950/20 p-8 rounded">
+              <h3 className="text-2xl font-bold text-white mb-4">Next steps</h3>
+              <p className="text-zinc-300 mb-6">Ready to implement these changes? We offer detailed reports, professional rewrites, and full redesigns.</p>
+              <Link href="/pricing" className="inline-block px-6 py-3 bg-cyan-600 hover:bg-cyan-700 text-black font-semibold rounded transition-colors">
+                View Options
               </Link>
             </div>
           </div>
         )}
       </main>
 
-      <footer className="py-8 text-center text-xs text-zinc-500 border-t border-zinc-800">
-        © 2026 VibeTeardown • Next.js 16 + Firecrawl AI
+      <footer className="border-t border-zinc-800 py-8 px-6 text-center text-sm text-zinc-500">
+        © 2026 VibeTeardown. All rights reserved.
       </footer>
     </div>
   );
